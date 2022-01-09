@@ -1,20 +1,21 @@
-package env
+package envData
 
 import (
+	"github.com/arnaugomez/buscopartida/core/env"
 	"github.com/joho/godotenv"
 	"os"
 )
 
-func Setup() Rer {
+func CreateRepo() env.Repo {
 	godotenv.Load(".env")
-	env := Env{
+	envVars := env.Env{
 		Host:     os.Getenv("HOST"),
 		User:     os.Getenv("USER"),
 		Password: os.Getenv("PASSWORD"),
 		DbName:   os.Getenv("DB_NAME"),
 		Port:     os.Getenv("PORT"),
 	}
-	r := envRepository{env}
+	r := repo{envVars}
 
 	return r
 }

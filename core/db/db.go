@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"github.com/arnaugomez/buscopartida/deps/env"
+	"github.com/arnaugomez/buscopartida/core/env"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -12,14 +12,13 @@ type Example struct {
 	Code string
 }
 
-type di interface {
-	EnvRer() env.Rer
-}
+// Gorm Database
+type DB = *gorm.DB
 
-func Setup(di di) *gorm.DB {
-	env := di.EnvRer().GetEnv()
+func Setup(envRepo env.Repo) DB {
+	env := envRepo.GetEnv()
 
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Asia/Shanghai", env.Host, env.User, env.Password, env.DbName, env.Port)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=Europe/Madrid", env.Host, env.User, env.Password, env.DbName, env.Port)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)

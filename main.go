@@ -1,20 +1,19 @@
 package main
 
 import (
-  "fmt"
-  "github.com/arnaugomez/buscopartida/di"
-  userRoutes "github.com/arnaugomez/buscopartida/routes/user"
-  "github.com/gin-gonic/gin"
+	"fmt"
+	ctxDomain "github.com/arnaugomez/buscopartida/ctx/domain"
 )
 
 func main() {
-  di := di.Setup()
-  fmt.Println(di)
+  ctx := ctxDomain.Setup()
+  fmt.Println("Contexto")
+  fmt.Println(ctx)
 
-  r := gin.Default()
+  // r := gin.Default()
 
-  userRoutes.Setup(r)
+  // userRoutes.Setup(r)
 
 
-  r.Run(":3000")
+  // r.Run(":3000")
 }

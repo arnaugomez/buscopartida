@@ -1,4 +1,4 @@
-package userRoutes
+package routes
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,10 +7,8 @@ import (
 
 // getUser, createUser, updateUser, deleteUser
 
-func getUserById(c *gin.Context) {
-	id := c.Param("id")
+func getUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"user": "Mantarelo",
-		"id": id,
 	})
 }
