@@ -3,10 +3,11 @@ package userDataModels
 import "time"
 
 type User struct {
-	ID           string
+	ID        string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+
 	Name         string
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
 	Email        string
 	PasswordHash string
 }
