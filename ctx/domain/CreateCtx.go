@@ -3,19 +3,22 @@ package ctxDomain
 import (
 	"github.com/arnaugomez/buscopartida/core/db"
 	"github.com/arnaugomez/buscopartida/core/env/data"
+	jwtData "github.com/arnaugomez/buscopartida/core/jwt/data"
 	userData "github.com/arnaugomez/buscopartida/core/user/data"
 	"github.com/arnaugomez/buscopartida/ctx"
 )
 
-func Setup() ctx.Ctx {
+func CreateCtx() ctx.Ctx {
 	var context ctx.Ctx
 	envRepo := envData.CreateRepo()
 	database := db.Setup(envRepo)
 	userRepo := userData.CreateRepo(database, &context)
+	jwtRepo := jwtData.CreateRepo(envRepo)
 	context = ctx.Ctx{
-		EnvRepo: envRepo,
+		EnvRepo:  envRepo,
 		UserRepo: userRepo,
+		JwtRepo:  jwtRepo,
 	}
-	userRepo.GetUser("Hello");
+	userRepo.GetUser("Hello")
 	return context
 }

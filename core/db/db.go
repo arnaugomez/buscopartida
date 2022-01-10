@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 	"github.com/arnaugomez/buscopartida/core/env"
+	userDataModels "github.com/arnaugomez/buscopartida/core/user/data/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -12,7 +13,7 @@ type Example struct {
 	Code string
 }
 
-// Gorm Database
+// DB Represent Gorm Database
 type DB = *gorm.DB
 
 func Setup(envRepo env.Repo) DB {
@@ -24,11 +25,14 @@ func Setup(envRepo env.Repo) DB {
 		panic(err)
 	}
 
-	err2 := db.AutoMigrate(&Example{})
-	if err2 != nil {
+	err = db.AutoMigrate(&Example{})
+	if err != nil {
 		panic(err)
 	}
 
-	return db
+	err = userDataModels.RegisterModels(db)
+
 	// db.Create(&Example{Code: "D42"})
+
+	return db
 }

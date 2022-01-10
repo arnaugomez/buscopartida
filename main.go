@@ -6,14 +6,13 @@ import (
 )
 
 func main() {
-  ctx := ctxDomain.Setup()
-  fmt.Println("Contexto")
-  fmt.Println(ctx)
+	ctx := ctxDomain.CreateCtx()
+	fmt.Println("Contexto")
+	fmt.Println(ctx)
 
-  // r := gin.Default()
+	// r := gin.Default()
 
-  // userRoutes.Setup(r)
+	// userRoutes.CreateCtx(r)
 
-
-  // r.Run(":3000")
+	// r.Run(":3000")
 }

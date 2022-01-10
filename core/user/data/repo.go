@@ -9,11 +9,11 @@ import (
 
 // Implements user.Repo
 type repo struct {
-	db db.DB
+	db  db.DB
 	ctx *ctx.Ctx
 }
 
-func (r repo) GetUser(name string) user.User  {
+func (r repo) GetUser(name string) user.User {
 	fmt.Println(r.ctx)
 	return user.User{}
 }
