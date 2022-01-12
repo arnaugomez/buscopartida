@@ -1,8 +1,10 @@
 package userDataModels
 
-import "github.com/arnaugomez/buscopartida/core/db"
+type autoMigrator interface {
+	AutoMigrate(model ...interface{}) error
+}
 
-func RegisterModels(db db.DB) error {
+func RegisterModels(db autoMigrator) error {
 	err := db.AutoMigrate(&User{})
 	if err != nil {
 		return err

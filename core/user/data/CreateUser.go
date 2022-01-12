@@ -12,6 +12,6 @@ func (r repo) CreateUser(c *user.Credentials) (*user.User, error) {
 		return nil, err
 	}
 	usr := userDataTransformers.CredentialsToUser(c, hash)
-	r.db.Create(&usr)
+	r.db.Create(usr)
 	return userDataTransformers.ToUserDomain(usr), nil
 }

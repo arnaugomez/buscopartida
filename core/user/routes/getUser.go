@@ -1,4 +1,4 @@
-package routes
+package userRoutes
 
 import (
 	"github.com/gin-gonic/gin"

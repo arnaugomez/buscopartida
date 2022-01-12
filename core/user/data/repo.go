@@ -1,7 +1,6 @@
 package userData
 
 import (
-	"fmt"
 	"github.com/arnaugomez/buscopartida/core/db"
 	"github.com/arnaugomez/buscopartida/core/user"
 	"github.com/arnaugomez/buscopartida/ctx"
@@ -13,7 +12,10 @@ type repo struct {
 	ctx *ctx.Ctx
 }
 
+func CreateRepo(database db.DB, context *ctx.Ctx) user.Repo {
+	return repo{database, context}
+}
+
 func (r repo) GetUser(name string) user.User {
-	fmt.Println(r.ctx)
 	return user.User{}
 }

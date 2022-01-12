@@ -8,13 +8,13 @@ import (
 	"github.com/arnaugomez/buscopartida/ctx"
 )
 
-func CreateCtx() ctx.Ctx {
-	var context ctx.Ctx
+func CreateCtx() *ctx.Ctx {
+	var context = &ctx.Ctx{}
 	envRepo := envData.CreateRepo()
 	database := db.Setup(envRepo)
-	userRepo := userData.CreateRepo(database, &context)
+	userRepo := userData.CreateRepo(database, context)
 	jwtRepo := jwtData.CreateRepo(envRepo)
-	context = ctx.Ctx{
+	*context = ctx.Ctx{
 		EnvRepo:  envRepo,
 		UserRepo: userRepo,
 		JwtRepo:  jwtRepo,

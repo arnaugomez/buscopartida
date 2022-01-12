@@ -32,7 +32,7 @@ func Setup(envRepo env.Repo) DB {
 
 	err = userDataModels.RegisterModels(db)
 
-	// db.Create(&Example{Code: "D42"})
+	db.Create(&Example{Code: "D42"})
 
 	return db
 }

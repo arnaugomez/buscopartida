@@ -3,7 +3,7 @@ package userDataModels
 import "time"
 
 type User struct {
-	ID        string
+	ID        uint `gorm:"autoIncrement"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 

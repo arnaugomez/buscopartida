@@ -2,17 +2,20 @@ package main
 
 import (
 	"fmt"
+	userRoutes "github.com/arnaugomez/buscopartida/core/user/routes"
 	ctxDomain "github.com/arnaugomez/buscopartida/ctx/domain"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	ctx := ctxDomain.CreateCtx()
-	fmt.Println("Contexto")
-	fmt.Println(ctx)
 
-	// r := gin.Default()
+	r := gin.Default()
 
-	// userRoutes.CreateCtx(r)
+	userRoutes.Register(r, ctx)
 
-	// r.Run(":3000")
+	err := r.Run(":3000")
+	if err != nil {
+		fmt.Println(err)
+	}
 }
