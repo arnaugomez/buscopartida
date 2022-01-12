@@ -1,4 +1,4 @@
-package userDataModels
+package userDbModels
 
 type autoMigrator interface {
 	AutoMigrate(model ...interface{}) error

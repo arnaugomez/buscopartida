@@ -1,9 +1,9 @@
-package userData
+package userRepo
 
 import (
 	"errors"
 	"github.com/arnaugomez/buscopartida/core/user"
-	userDbModels "github.com/arnaugomez/buscopartida/core/user/data/models"
+	userDbModels "github.com/arnaugomez/buscopartida/core/user/repo/models"
 	"gorm.io/gorm"
 )
 

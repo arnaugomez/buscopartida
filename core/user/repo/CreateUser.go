@@ -1,13 +1,13 @@
-package userData
+package userRepo
 
 import (
-	cryptoUseCases "github.com/arnaugomez/buscopartida/core/crypto/useCases"
+	"github.com/arnaugomez/buscopartida/core/common/utils/hashing"
 	"github.com/arnaugomez/buscopartida/core/user"
-	userDataTransformers "github.com/arnaugomez/buscopartida/core/user/data/transformers"
+	userDataTransformers "github.com/arnaugomez/buscopartida/core/user/repo/transformers"
 )
 
 func (r repo) CreateUser(c *user.Credentials) (*user.User, error) {
-	hash, err := cryptoUseCases.Hash(c.Password)
+	hash, err := hashing.Hash(c.Password)
 	if err != nil {
 		return nil, err
 	}

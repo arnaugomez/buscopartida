@@ -2,7 +2,7 @@ package user
 
 // User Repository
 type Repo interface {
-	GetUser(name string) User
+	GetUserByEmail(email string) (*User, error)
 	CreateUser(c *Credentials) (*User, error)
 	UserAlreadyExists(c *Credentials) bool
 }

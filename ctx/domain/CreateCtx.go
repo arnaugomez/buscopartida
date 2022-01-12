@@ -4,7 +4,7 @@ import (
 	"github.com/arnaugomez/buscopartida/core/db"
 	"github.com/arnaugomez/buscopartida/core/env/data"
 	jwtData "github.com/arnaugomez/buscopartida/core/jwt/data"
-	userData "github.com/arnaugomez/buscopartida/core/user/data"
+	userData "github.com/arnaugomez/buscopartida/core/user/repo"
 	"github.com/arnaugomez/buscopartida/ctx"
 )
 
@@ -19,6 +19,5 @@ func CreateCtx() *ctx.Ctx {
 		UserRepo: userRepo,
 		JwtRepo:  jwtRepo,
 	}
-	userRepo.GetUser("Hello")
 	return context
 }

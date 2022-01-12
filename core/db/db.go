@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 	"github.com/arnaugomez/buscopartida/core/env"
-	userDataModels "github.com/arnaugomez/buscopartida/core/user/data/models"
+	userDataModels "github.com/arnaugomez/buscopartida/core/user/repo/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

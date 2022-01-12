@@ -1,4 +1,4 @@
-package userDataModels
+package userDbModels
 
 import "time"
 

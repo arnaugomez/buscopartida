@@ -1,4 +1,4 @@
-package userData
+package userRepo
 
 import (
 	"github.com/arnaugomez/buscopartida/core/db"
@@ -14,8 +14,4 @@ type repo struct {
 
 func CreateRepo(database db.DB, context *ctx.Ctx) user.Repo {
 	return repo{database, context}
-}
-
-func (r repo) GetUser(name string) user.User {
-	return user.User{}
 }
