@@ -32,11 +32,31 @@ func login(c *gin.Context, ctx *ctx.Ctx) {
 		return
 	}
 
-	jwt, err := ctx.JwtRepo.CreateJWT(usr.ID)
+	token, err := ctx.JwtRepo.CreateJWT(usr.ID)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, view.ErrorToJson(view.ServerError, err))
 		return
 	}
 
-	c.JSON(http.StatusOK, userView.ToUserWithJwtView(jwt, usr))
+	c.JSON(http.StatusOK, userView.ToUserWithJwtView(token, usr))
+}
+
+func jwtLogin(c *gin.Context, ctx *ctx.Ctx, userId uint) {
+
+	usr, err := ctx.UserRepo.GetUserById(userId)
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		c.AbortWithStatusJSON(http.StatusBadRequest, view.ErrorToJson(userView.ErrorUserDoesNotExist, err))
+		return
+	} else if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, view.ErrorToJson(view.ServerError, err))
+		return
+	}
+
+	token, err := ctx.JwtRepo.CreateJWT(userId)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, view.ErrorToJson(view.ServerError, err))
+		return
+	}
+
+	c.JSON(http.StatusOK, userView.ToUserWithJwtView(token, usr))
 }

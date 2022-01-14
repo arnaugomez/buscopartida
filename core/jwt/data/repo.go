@@ -1,6 +1,7 @@
 package jwtData
 
 import (
+	"errors"
 	"github.com/arnaugomez/buscopartida/core/env"
 	"github.com/arnaugomez/buscopartida/core/jwt"
 	jwtLib "github.com/dgrijalva/jwt-go"
@@ -20,14 +21,28 @@ func getExpirationTime() int64 {
 }
 
 func (r *repo) CreateJWT(userId uint) (string, error) {
-	claims := &claims{
+	c := &claims{
 		UserId: userId,
 		StandardClaims: jwtLib.StandardClaims{
 			ExpiresAt: getExpirationTime(),
 		},
 	}
 
-	token := jwtLib.NewWithClaims(jwtLib.SigningMethodHS256, claims)
+	token := jwtLib.NewWithClaims(jwtLib.SigningMethodHS256, c)
 
 	return token.SignedString(r.key)
+}
+
+func (r *repo) GetUserIdByJWT(token string) (userId uint, err error) {
+	c := &claims{}
+	tkn, err := jwtLib.ParseWithClaims(token, c, func(t *jwtLib.Token) (interface{}, error) {
+		return r.key, nil
+	})
+	if err != nil {
+		return 0, err
+	}
+	if !tkn.Valid {
+		err = errors.New("jwt token is invalid")
+	}
+	return c.UserId, err
 }

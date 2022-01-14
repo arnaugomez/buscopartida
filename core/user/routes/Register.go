@@ -10,4 +10,5 @@ func Register(r *gin.Engine, ctx *ctx.Ctx) {
 	g := r.Group("/user")
 	routes.Register(g, "/create", createUser, ctx )
 	routes.Register(g, "/login", login, ctx )
+	routes.Protected(g, "/login/jwt", jwtLogin, ctx )
 }
