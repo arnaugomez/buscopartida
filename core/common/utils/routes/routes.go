@@ -2,9 +2,9 @@ package routes
 
 import (
 	"errors"
-	"github.com/arnaugomez/buscopartida/core/common/view"
 	jwtView "github.com/arnaugomez/buscopartida/core/jwt/view"
 	"github.com/arnaugomez/buscopartida/ctx"
+	"github.com/arnaugomez/buscopartida/routes/common/view"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"

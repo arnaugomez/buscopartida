@@ -1,4 +1,4 @@
-package jwtData
+package jwtRepo
 
 import (
 	"errors"

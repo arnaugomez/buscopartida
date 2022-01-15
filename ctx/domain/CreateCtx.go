@@ -3,7 +3,7 @@ package ctxDomain
 import (
 	"github.com/arnaugomez/buscopartida/core/db"
 	"github.com/arnaugomez/buscopartida/core/env/data"
-	jwtData "github.com/arnaugomez/buscopartida/core/jwt/data"
+	jwtData "github.com/arnaugomez/buscopartida/core/jwt/repo"
 	userData "github.com/arnaugomez/buscopartida/core/user/repo"
 	"github.com/arnaugomez/buscopartida/ctx"
 )

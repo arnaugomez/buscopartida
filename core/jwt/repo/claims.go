@@ -1,4 +1,4 @@
-package jwtData
+package jwtRepo
 
 import "github.com/dgrijalva/jwt-go"
 

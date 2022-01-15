@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	userRoutes "github.com/arnaugomez/buscopartida/core/user/routes"
 	ctxDomain "github.com/arnaugomez/buscopartida/ctx/domain"
+	"github.com/arnaugomez/buscopartida/routes/user"
 	"github.com/gin-gonic/gin"
 )
 
