@@ -29,5 +29,5 @@ func createUser(c *gin.Context, ctx *ctx.Ctx) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, view2.ErrorToJson(view2.ServerError, err))
 	}
 
-	c.JSON(http.StatusOK, user)
+	c.JSON(http.StatusOK, userView2.ToUserView(user))
 }
