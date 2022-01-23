@@ -1,6 +1,8 @@
 package userRoutes
 
 import (
+	"fmt"
+	"github.com/arnaugomez/buscopartida/core/user"
 	"github.com/arnaugomez/buscopartida/ctx"
 	view2 "github.com/arnaugomez/buscopartida/routes/common/view"
 	userView2 "github.com/arnaugomez/buscopartida/routes/user/view"
@@ -24,10 +26,17 @@ func createUser(c *gin.Context, ctx *ctx.Ctx) {
 	}
 
 	// Create the User
-	user, err := ctx.UserRepo.CreateUser(credentials)
+	usr, err := ctx.UserRepo.CreateUser(credentials)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, view2.ErrorToJson(view2.ServerError, err))
 	}
 
-	c.JSON(http.StatusOK, userView2.ToUserView(user))
+	// Create the profile
+	profile, err := ctx.UserRepo.CreateProfile(&user.Profile{UserID: usr.ID, Slug: usr.Name})
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, view2.ErrorToJson(view2.ServerError, err))
+	}
+	fmt.Println(profile)
+
+	c.JSON(http.StatusOK, userView2.ToUserView(usr))
 }

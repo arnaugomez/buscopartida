@@ -8,4 +8,9 @@ type Repo interface {
 	DeleteUserById(id uint) error
 	UserAlreadyExists(c *Credentials) bool
 	UpdatePassword(userId uint, password string) error
+
+	CreateProfile(u *Profile) (*Profile, error)
+	GetProfileByUserId(userId uint) (*Profile, error)
+
+	GetUniqueSlug(s string) (newSlug string, err error)
 }

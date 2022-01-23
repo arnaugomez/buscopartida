@@ -5,7 +5,7 @@ type autoMigrator interface {
 }
 
 func RegisterModels(db autoMigrator) error {
-	err := db.AutoMigrate(&User{})
+	err := db.AutoMigrate(&User{}, &Profile{})
 	if err != nil {
 		return err
 	}

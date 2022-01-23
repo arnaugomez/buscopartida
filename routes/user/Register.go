@@ -13,4 +13,5 @@ func Register(r *gin.Engine, ctx *ctx.Ctx) {
 	routes.Protected(g, "/login/jwt", jwtLogin, ctx)
 	routes.Protected(g, "/delete", deleteUser, ctx)
 	routes.Protected(g, "/password/update", updatePassword, ctx)
+	routes.Protected(g, "/my-profile/get", getMyProfile, ctx)
 }

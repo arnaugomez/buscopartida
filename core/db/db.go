@@ -8,11 +8,6 @@ import (
 	"gorm.io/gorm"
 )
 
-type Example struct {
-	ID   uint
-	Code string
-}
-
 // DB Represent Gorm Database
 type DB = *gorm.DB
 
@@ -25,14 +20,7 @@ func Setup(envRepo env.Repo) DB {
 		panic(err)
 	}
 
-	err = db.AutoMigrate(&Example{})
-	if err != nil {
-		panic(err)
-	}
-
 	err = userDataModels.RegisterModels(db)
-
-	db.Create(&Example{Code: "D42"})
 
 	return db
 }
